@@ -55,12 +55,8 @@ def create_tables(engine):
 create_tables(engine)
 
 res = input('id...')
-query_1 = session.query(Publisher).filter(Publisher.id == res)
+query_1 = session.query(Shop.name).join(Book.publisher).join(Stock.book).join(Shop.shop).filter(Publisher.id == res)
 for i in query_1.all():
     print(f'{res}-{i.name}')
-res_2 = input('shop...') 
-query_2 = session.query(Shop.name).filter(Shop.name == res_2)
-for r in query_2.all():
-    print(f'{res_2}-{r.name}')
 
 session.close()
